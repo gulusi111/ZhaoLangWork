@@ -1,4 +1,4 @@
-
+import helper from 'helper';
 
 cc.Class({
     extends: cc.Component,
@@ -10,13 +10,18 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        cc.log("onLoad");
+        cc.log("Home_onLoad");
 
         //主界面
         this.bg = cc.find("bg", this.node);
         this.btn_start = cc.find("btn_start", this.bg);
         this.btn_start.on('touchend', function () {
             cc.log("btn_start");
+            let callBack = function (node) {
+
+            };
+            let root = cc.find("Canvas");
+            helper.getInstance().addPrefabToNode("Prefab/GameLayer", root, 0, callBack);    //进入home界面
         }, this);
 
         this.btn_rule = cc.find("btn_rule", this.bg);
@@ -69,20 +74,20 @@ cc.Class({
     },
 
     onEnable() {
-        cc.log("onEnable");
+        cc.log("Home_onEnable");
     },
 
     start() {
-        cc.log("start");
+        cc.log("Home_start");
     },
 
 
     onDestory() {
-        cc.log("onDestory");
+        cc.log("Home_onDestory");
     },
 
     onDisable() {
-        cc.log("onDisable");
+        cc.log("Home_onDisable");
     },
 
     // update (dt) {},
