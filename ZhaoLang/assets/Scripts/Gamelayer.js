@@ -21,6 +21,8 @@ cc.Class({
         this.Item_characterL.active = false;
         // this.Item_characterR = cc.find("Item_characterR", this.bg); //右头像
         // this.Item_characterR.active = false;
+        this.node_NumChoice = cc.find("node_NumChoice", this.bg);   //数字选择
+        this.node_NumChoice.active = false;
 
         this.btn_tuichu = cc.find("btn_tuichu", this.bg_top);   //退出按钮
         this.btn_tuichu.on('touchend', function () {
@@ -57,6 +59,18 @@ cc.Class({
         this.btn_heiye.on('touchend', function () {
             cc.log("btn_heiye");
         }, this);
+
+        //关闭按钮
+        cc.find("btn_close", this.node_NumChoice).on('touchend', function () {
+            cc.log("btn_close");
+            this.node_NumChoice.active = false;
+        }, this);
+        //数字
+        for (let index = 1; index < 13; index++) {
+            cc.find("btn_" + index, this.node_NumChoice).on('touchend', function () {
+                cc.log("index " + index);
+            }, this);
+        }
 
         this.init();    //初始化
     },
