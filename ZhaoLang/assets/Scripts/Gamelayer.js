@@ -33,6 +33,9 @@ cc.Class({
         this.btn_chongzhi = cc.find("btn_chongzhi", this.bg_top);   //重置按钮
         this.btn_chongzhi.on('touchend', function () {
             cc.log("btn_chongzhi");
+            // helper.getInstance().openTFChoice(function () {
+            //     cc.log("5555555555555");
+            // });
         }, this);
 
         this.Label_tianshu = cc.find("Label_tianshu", this.bg_liaotian);   //当前天数
@@ -47,6 +50,7 @@ cc.Class({
         this.btn_duihua = cc.find("btn_duihua", this.bg_di);   //聊天按钮
         this.btn_duihua.on('touchend', function () {
             cc.log("btn_duihua");
+
         }, this);
         this.label_duihua = cc.find("sp_num/LabelAtlas", this.btn_duihua).getComponent(cc.Label);
 
@@ -71,6 +75,8 @@ cc.Class({
                 cc.log("index " + index);
             }, this);
         }
+        this.NumChoiceBg2 = cc.find("sp_bg2", this.node_NumChoice);
+        this.NumChoiceBg2.active = false;
 
         this.init();    //初始化
     },
@@ -187,6 +193,16 @@ cc.Class({
         cc.log("Gamelayer_start");
     },
 
+    //打开数字键盘
+    openNumNode(b){
+        if (b != null) {
+            this.NumChoiceBg2.active = b;
+        }else{
+            this.NumChoiceBg2.active = false;
+        }
+        
+        
+    },
 
     onDestory() {
         cc.log("Gamelayer_onDestory");

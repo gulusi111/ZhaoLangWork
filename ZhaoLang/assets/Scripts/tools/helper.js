@@ -151,6 +151,18 @@ export default class Helper extends SingletonBase {
         }
     }
 
+    //打开选择界面
+    openTFChoice(str,trueCallBack, falseCallBack){
+        let callBack = function (node) {
+            cc.log("1111");
+            let Node_tfChoice = node.getComponent("Node_tfChoice");
+            Node_tfChoice.setLabel(str);
+            Node_tfChoice.setTrueCallBack(trueCallBack);
+            Node_tfChoice.setFalseCallBack(falseCallBack);
+        };
+        let root = cc.find("Canvas");
+        this.addPrefabToNode("Prefab/Node_tfChoice", root, 0, callBack);    //进入home界面
+    }
 
 
 }
