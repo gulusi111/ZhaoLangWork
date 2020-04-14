@@ -29,35 +29,36 @@ PlayerEnum["CM_PUCUN"] = 41; //普通村民
 PlayerEnum["CM_XZCUN"] = 42; //先知
 PlayerEnum["CM_BDCUN"] = 43; //被动
 
-//----------------------------------------------------
+//--------------------身份牌--------------------------------
 //狼神
-PlayerEnum["LS_PUTONG"] = 100; //普通
-PlayerEnum["LS_LANGWANG"] = 101; //狼王
-PlayerEnum["LS_LANGMEI"] = 102; //狼美
-PlayerEnum["LS_KUANGLANG"] = 103; //狂狼
-PlayerEnum["LS_DULANG"] = 104; //毒狼
-//先知神
-PlayerEnum["XZ_YYJ"] = 200; //预言家
-PlayerEnum["XZ_GX"] = 201; //狗熊
-PlayerEnum["XZ_YSS"] = 202; //耶稣
-PlayerEnum["XZ_CQN"] = 203; //村青年
-//主动神
-PlayerEnum["ZD_SW"] = 300; //守卫
-PlayerEnum["ZD_QS"] = 301; //骑士
-PlayerEnum["ZD_MS"] = 302; //牧师
-PlayerEnum["ZD_HNW"] = 303; //黑女巫
-PlayerEnum["ZD_ZNW"] = 304; //真女巫
-PlayerEnum["ZD_SF"] = 305; //神父
-PlayerEnum["ZD_LCZ"] = 306; //老村长
-//被动神
-PlayerEnum["BD_LR"] = 400; //猎人
-PlayerEnum["BD_BC"] = 401; //白神
-PlayerEnum["BD_XN"] = 402; //修女
-PlayerEnum["BD_BNW"] = 403; //白女巫
-PlayerEnum["BD_YYJ"] = 404; //遗言家
-PlayerEnum["BD_RZ"] = 405; //忍者
+PlayerEnum["LS_PUTONG"] = 101; //普通
+PlayerEnum["LS_LANGWANG"] = 102; //狼王
+PlayerEnum["LS_LANGMEI"] = 103; //狼美
+PlayerEnum["LS_KUANGLANG"] = 104; //狂狼
+PlayerEnum["LS_DULANG"] = 105; //毒狼
 //村民
-PlayerEnum["CMM_PT"] = 500; //普通村民
+PlayerEnum["CMM_PT"] = 201; //普通村民
+//先知神
+PlayerEnum["XZ_YYJ"] = 301; //预言家
+PlayerEnum["XZ_GX"] = 302; //狗熊
+PlayerEnum["XZ_YSS"] = 303; //耶稣
+PlayerEnum["XZ_CQN"] = 304; //村青年
+//主动神
+PlayerEnum["ZD_SW"] = 401; //守卫
+PlayerEnum["ZD_QS"] = 402; //骑士
+PlayerEnum["ZD_MS"] = 403; //牧师
+PlayerEnum["ZD_HNW"] = 404; //黑女巫
+PlayerEnum["ZD_ZNW"] = 405; //真女巫
+PlayerEnum["ZD_SF"] = 406; //神父
+PlayerEnum["ZD_LCZ"] = 407; //老村长
+//被动神
+PlayerEnum["BD_LR"] = 501; //猎人
+PlayerEnum["BD_BC"] = 502; //白神
+PlayerEnum["BD_XN"] = 503; //修女
+PlayerEnum["BD_BNW"] = 504; //白女巫
+PlayerEnum["BD_YYJ"] = 505; //遗言家
+PlayerEnum["BD_RZ"] = 506; //忍者
+
 
 
 module.exports = PlayerEnum
