@@ -16,7 +16,7 @@ cc.Class({
         this.bg_liaotian = cc.find("bg_liaotian", this.bg);
         this.bg_character = cc.find("bg_character", this.bg);
         this.bg_di = cc.find("bg_di", this.bg);
-        this.label_liaotian = cc.find("label_liaotian", this.bg);   //聊天文字
+        this.label_liaotian = cc.find("label_liaotian", this.bg);   //聊天 文字 
         this.label_liaotian.active = false;
         this.Item_characterL = cc.find("Item_characterL", this.bg); //左头像
         this.Item_characterL.active = false;
