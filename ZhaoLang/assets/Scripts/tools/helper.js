@@ -14,7 +14,7 @@ export default class Helper extends SingletonBase {
         let _instance = new Helper();
         _instance.Res = {};
         _instance.TipsLayer = null; // 缓存tipslayer
-       
+
         return _instance
     }
 
@@ -152,16 +152,29 @@ export default class Helper extends SingletonBase {
     }
 
     //打开选择界面
-    openTFChoice(str,trueCallBack, falseCallBack){
+    openTFChoice(str, trueCallBack, falseCallBack, node) {
         let callBack = function (node) {
             cc.log("1111");
-            let Node_tfChoice = node.getComponent("Node_tfChoice");
-            Node_tfChoice.setLabel(str);
-            Node_tfChoice.setTrueCallBack(trueCallBack);
-            Node_tfChoice.setFalseCallBack(falseCallBack);
+            let ctr = node.getComponent("Node_tfChoice");
+            ctr.setLabel(str);
+            ctr.setTrueCallBack(trueCallBack);
+            ctr.setFalseCallBack(falseCallBack);
         };
-        let root = cc.find("Canvas");
-        this.addPrefabToNode("Prefab/Node_tfChoice", root, 0, callBack);    //进入home界面
+        let root = node || cc.find("Canvas");
+        this.addPrefabToNode("Prefab/Node_tfChoice", root, 100, callBack);    //进入home界面
+    }
+
+    //打开选择界面
+    openNumChoice(str, numCallBack, node) {
+        let callBack = function (node) {
+            cc.log("1111");
+            let ctr = node.getComponent("Node_NumChoice");
+            ctr.setLabel(str);
+            ctr.setNumCallBack(numCallBack);
+
+        };
+        let root = node || cc.find("Canvas");
+        this.addPrefabToNode("Prefab/Node_NumChoice", root, 100, callBack);    //进入home界面
     }
 
 

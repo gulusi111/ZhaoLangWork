@@ -22,8 +22,6 @@ cc.Class({
         this.Item_characterL.active = false;
         // this.Item_characterR = cc.find("Item_characterR", this.bg); //右头像
         // this.Item_characterR.active = false;
-        this.node_NumChoice = cc.find("node_NumChoice", this.bg);   //数字选择
-        this.node_NumChoice.active = false;
 
         this.btn_tuichu = cc.find("btn_tuichu", this.bg_top);   //退出按钮
         this.btn_tuichu.on('touchend', function () {
@@ -58,28 +56,22 @@ cc.Class({
         this.btn_churen = cc.find("btn_churen", this.bg_di);   //出人按钮
         this.btn_churen.on('touchend', function () {
             cc.log("btn_churen");
+            helper.getInstance().openNumChoice("222",function (index) {
+                this.playerTab[index - 1].isDead = 2;
+                this.characterUpdata();   //刷新头像框
+            }.bind(this));
         }, this);
 
         this.btn_heiye = cc.find("btn_heiye", this.bg_di);   //黑夜按钮
         this.btn_heiye.on('touchend', function () {
             cc.log("btn_heiye");
-            this.node_NumChoice.active = true;
+            helper.getInstance().openNumChoice("222",function (index) {
+                this.showPlayerIcon(index - 1);
+            }.bind(this));
         }, this);
 
-        //关闭按钮
-        cc.find("btn_close", this.node_NumChoice).on('touchend', function () {
-            cc.log("btn_close");
-            this.node_NumChoice.active = false;
-        }, this);
-        //数字
-        for (let index = 1; index < 13; index++) {
-            cc.find("btn_" + index, this.node_NumChoice).on('touchend', function () {
-                cc.log("index " + index);
-                this.showPlayerIcon(index - 1);
-            }, this);
-        }
-        this.NumChoiceBg2 = cc.find("sp_bg2", this.node_NumChoice);
-        this.NumChoiceBg2.active = false;
+
+
 
         this.init();    //初始化
     },
@@ -92,14 +84,15 @@ cc.Class({
         this.liaotianTogglePre();   //清理聊天内容
         this.label_duihua.string = 0;   //todo聊天数量
         //-----------------测试数据------------------------
-        let playerTab = []; 
+        let playerTab = [];
         for (let index = 0; index < 12; index++) {
             let tab = {};
             tab.name = PlayerEnum["CMM_PT"];
-            tab.isDead = false;
-            tab.isShowIcon = false; 
+            tab.isDead = 0; //0没有死亡 1刀死 2出局
+            tab.isShowIcon = false;
             tab.zyNum = 0;  //0不显示 1好人 2坏人
-            
+
+
             playerTab.push(tab);
         }
         this.setPlayerTab(playerTab);   //设置当前座位号
@@ -109,7 +102,7 @@ cc.Class({
     },
 
     //设置当前座位号
-    setPlayerTab(tab){
+    setPlayerTab(tab) {
         this.playerTab = tab;
     },
 
@@ -153,7 +146,7 @@ cc.Class({
             // item.getComponent(cc.Label).string = element;
             // let sp_icon = cc.find("sp_icon", item);  //
             let sp_hh = cc.find("sp_hh", item);
-            let sp_zhh = cc.find("sp_zhh",item);
+            let sp_zhh = cc.find("sp_zhh", item);
             let hh_num = 0; //0不显示 1好人 2坏人
             //猜测阵营
             sp_hh.on('touchend', function () {
@@ -221,17 +214,33 @@ cc.Class({
 
             if (this.playerTab[index].isShowIcon == true) {
                 this.showPlayerIcon(index);
-            }else{
+            } else {
                 this.hidePlayerIcon(index);
             }
 
-            sp_daopai.active = this.playerTab[index].isDead;
+            //死亡显示
+            switch (this.playerTab[index].isDead) {
+                case 0:
+                    sp_daopai.active = false;
+                    break;
+                case 1:
+                    sp_daopai.active = true;
+                    break;
+                case 2:
+                    sp_daopai.active = true;
+                    break;
+
+                default:
+                    sp_daopai.active = true;
+                    break;
+            }
+
 
         }
     },
 
     //隐藏头像
-    hidePlayerIcon(index){
+    hidePlayerIcon(index) {
         if (index) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
             // let nameStr = "player_" + this.playerTab[index].name;
@@ -251,7 +260,7 @@ cc.Class({
     },
 
     //显示头像icon
-    showPlayerIcon(index){
+    showPlayerIcon(index) {
         if (index) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
             let nameStr = "player_" + this.playerTab[index].name;
@@ -272,7 +281,7 @@ cc.Class({
     },
 
     //显示所有头像
-    showAllPlayerIcon(){
+    showAllPlayerIcon() {
         for (let index = 0; index < this.playerTab.length; index++) {
             let nameStr = "player_" + this.playerTab[index].name;
 
@@ -287,7 +296,7 @@ cc.Class({
             }.bind(this);
             let spr = BaseResLoad.getInstance().LoadByKey(sp_icon.uuid, "texture/texture", resCall, cc.SpriteAtlas);      //cc.bc.Helper.getSpriteFrame("atlas/pccaipiao", str)	//获取图片
             spr && resCall(null, spr);   //如果图片存在手动返回
-            
+
         }
     },
 
@@ -303,14 +312,14 @@ cc.Class({
     },
 
     //打开数字键盘
-    openNumNode(b){
+    openNumNode(b) {
         if (b != null) {
             this.NumChoiceBg2.active = b;
-        }else{
+        } else {
             this.NumChoiceBg2.active = false;
         }
-        
-        
+
+
     },
 
     onDestory() {
