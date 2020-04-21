@@ -578,7 +578,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 68.93,
+      "width": 40,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -629,8 +629,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "true",
-    "_N$string": "true",
+    "_string": "是",
+    "_N$string": "是",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
@@ -988,7 +988,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 84.49,
+      "width": 40,
       "height": 50.4
     },
     "_anchorPoint": {
@@ -1039,8 +1039,8 @@
       }
     ],
     "_useOriginalSize": false,
-    "_string": "false",
-    "_N$string": "false",
+    "_string": "否",
+    "_N$string": "否",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
