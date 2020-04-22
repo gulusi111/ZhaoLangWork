@@ -103,7 +103,7 @@ cc.Class({
 
         //     playerTab.push(tab);
         // }
-        GameLogic.getInstance().createGamePlayer(6,6,0,0,0,0);
+        GameLogic.getInstance().createGamePlayer(2,3,1,2,2,2);
 
 
         this.setPlayerTab(GameLogic.getInstance().playerTab);   //设置当前座位号
@@ -258,7 +258,7 @@ cc.Class({
 
     //隐藏头像
     hidePlayerIcon(index) {
-        if (index) {
+        if (index != null) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
             // let nameStr = "player_" + this.playerTab[index].name;
             let resCall = function (err, spr) {

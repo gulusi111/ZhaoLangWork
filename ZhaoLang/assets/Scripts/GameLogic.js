@@ -59,7 +59,6 @@ export default class GameLogic extends SingletonBase {
             tab2.splice(num, 1);
         }
 
-
         return tab
     }
 
@@ -86,22 +85,59 @@ export default class GameLogic extends SingletonBase {
 
     //创建狼神
     createLS(num, tab) {
-
+        // PlayerEnum["LS_LANGWANG"] = 102; //狼王
+        // PlayerEnum["LS_LANGMEI"] = 103; //狼美
+        // PlayerEnum["LS_KUANGLANG"] = 104; //狂狼
+        // PlayerEnum["LS_DULANG"] = 105; //毒狼
+        let tab2 = [PlayerEnum["LS_LANGWANG"], PlayerEnum["LS_LANGMEI"], PlayerEnum["LS_KUANGLANG"], PlayerEnum["LS_DULANG"]];
+        for (let index = num; index > 0; index--) {
+            let choiceNum = Math.floor(Math.random() * tab2.length);
+            tab.push(tab2[choiceNum]);
+            tab2.splice(choiceNum, 1);
+        }
     }
 
     //创建先知神
     createXZ(num, tab) {
-
+        let tab2 = [PlayerEnum["XZ_YYJ"], PlayerEnum["XZ_GX"], PlayerEnum["XZ_YSS"], PlayerEnum["XZ_CQN"]];
+        for (let index = num; index > 0; index--) {
+            let choiceNum = Math.floor(Math.random() * tab2.length);
+            tab.push(tab2[choiceNum]);
+            tab2.splice(choiceNum, 1);
+        }
     }
 
     //创建主动神
     createZD(num, tab) {
-
+        // PlayerEnum["ZD_SW"] = 401; //守卫
+        // PlayerEnum["ZD_QS"] = 402; //骑士 
+        // PlayerEnum["ZD_MS"] = 403; //牧师
+        // PlayerEnum["ZD_HNW"] = 404; //黑女巫
+        // PlayerEnum["ZD_ZNW"] = 405; //真女巫
+        // PlayerEnum["ZD_SF"] = 406; //神父
+        // PlayerEnum["ZD_LCZ"] = 407; //老村长
+        let tab2 = [PlayerEnum["ZD_SW"], PlayerEnum["ZD_QS"], PlayerEnum["ZD_MS"], PlayerEnum["ZD_HNW"], PlayerEnum["ZD_ZNW"], PlayerEnum["ZD_SF"], PlayerEnum["ZD_LCZ"]];
+        for (let index = num; index > 0; index--) {
+            let choiceNum = Math.floor(Math.random() * tab2.length);
+            tab.push(tab2[choiceNum]);
+            tab2.splice(choiceNum, 1);
+        }
     }
 
     //创建被动神
     createBD(num, tab) {
-
+        // PlayerEnum["BD_LR"] = 501; //猎人
+        // PlayerEnum["BD_BC"] = 502; //白神
+        // PlayerEnum["BD_XN"] = 503; //修女
+        // PlayerEnum["BD_BNW"] = 504; //白女巫
+        // PlayerEnum["BD_YYJ"] = 505; //遗言家
+        // PlayerEnum["BD_RZ"] = 506; //忍者
+        let tab2 = [PlayerEnum["BD_LR"], PlayerEnum["BD_BC"], PlayerEnum["BD_XN"], PlayerEnum["BD_BNW"], PlayerEnum["BD_YYJ"], PlayerEnum["BD_RZ"]];
+        for (let index = num; index > 0; index--) {
+            let choiceNum = Math.floor(Math.random() * tab2.length);
+            tab.push(tab2[choiceNum]);
+            tab2.splice(choiceNum, 1);
+        }
     }
 
 
