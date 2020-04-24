@@ -65,7 +65,7 @@ cc.Class({
         this.btn_churen.on('touchend', function () {
             cc.log("btn_churen");
             helper.getInstance().openNumChoice("222", function (index) {
-                this.playerTab[index - 1].isDead = 2;
+                this.playerTab[index - 1].m_isDead = 2;
                 this.characterUpdata();   //刷新头像框
             }.bind(this));
         }, this);
@@ -91,21 +91,8 @@ cc.Class({
         this.liaotianItems = [];
         this.liaotianTogglePre();   //清理聊天内容
         this.label_duihua.string = 0;   //todo聊天数量
-        //-----------------测试数据------------------------
-        // let playerTab = [];
-        // for (let index = 0; index < 12; index++) {
-        //     let tab = {};
-        //     tab.name = PlayerEnum["CMM_PT"];
-        //     tab.isDead = 0; //0没有死亡 1刀死 2出局
-        //     tab.isShowIcon = false;
-        //     tab.zyNum = 0;  //0不显示 1好人 2坏人
-
-
-        //     playerTab.push(tab);
-        // }
-        GameLogic.getInstance().createGamePlayer(2,3,1,2,2,2);
-
-
+ 
+        GameLogic.getInstance().createGamePlayer(2,3,1,2,2,2);  //组建局
         this.setPlayerTab(GameLogic.getInstance().playerTab);   //设置当前座位号
         //-------------------------------------------
         this.chatacterItemTab = []; //玩家头像tab
@@ -143,7 +130,7 @@ cc.Class({
 
     //显示真实正营  //0不显示 1好人 2坏人
     showZZY(index, zhenyingNum) {
-        this.playerTab[index].zyNum = zhenyingNum;
+        this.playerTab[index].m_ZY = zhenyingNum;
         this.characterUpdata();   //刷新头像框
     },
 
@@ -198,7 +185,7 @@ cc.Class({
             let sp_zhaoren = cc.find("sp_zhh/sp_haoren", item);
             let sp_zlangren = cc.find("sp_zhh/sp_langren", item);
             //真实阵营显示
-            switch (this.playerTab[index].zyNum) {
+            switch (this.playerTab[index].m_ZY) {
                 case 0:
                     sp_zhaoren.active = false;
                     sp_zlangren.active = false;
@@ -229,14 +216,14 @@ cc.Class({
                 sp_zhh.x = setX2;
             }
 
-            if (this.playerTab[index].isShowIcon == true) {
+            if (this.playerTab[index].m_isDP == true) {
                 this.showPlayerIcon(index);
             } else {
                 this.hidePlayerIcon(index);
             }
 
             //死亡显示
-            switch (this.playerTab[index].isDead) {
+            switch (this.playerTab[index].m_isDead) {
                 case 0:
                     sp_daopai.active = false;
                     break;
@@ -260,7 +247,7 @@ cc.Class({
     hidePlayerIcon(index) {
         if (index != null) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
-            // let nameStr = "player_" + this.playerTab[index].name;
+            // let nameStr = "player_" + this.playerTab[index].m_DP;
             let resCall = function (err, spr) {
                 if (err) {
                     cc.log("player_0");
@@ -268,7 +255,7 @@ cc.Class({
                 }
                 let sp1 = sp_icon.getComponent(cc.Sprite);
                 sp1.spriteFrame = spr.getSpriteFrame("player_0");
-                this.playerTab[index].isShowIcon = false;
+                this.playerTab[index].m_isDP = false;
             }.bind(this);
             let spr = BaseResLoad.getInstance().LoadByKey(sp_icon.uuid, "texture/texture", resCall, cc.SpriteAtlas);      //cc.bc.Helper.getSpriteFrame("atlas/pccaipiao", str)	//获取图片
             spr && resCall(null, spr);   //如果图片存在手动返回
@@ -280,7 +267,7 @@ cc.Class({
     showPlayerIcon(index) {
         if (index != null) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
-            let nameStr = "player_" + this.playerTab[index].name;
+            let nameStr = "player_" + this.playerTab[index].m_DP;
 
             let resCall = function (err, spr) {
                 if (err) {
@@ -289,7 +276,7 @@ cc.Class({
                 }
                 let sp1 = sp_icon.getComponent(cc.Sprite);
                 sp1.spriteFrame = spr.getSpriteFrame(nameStr);
-                this.playerTab[index].isShowIcon = true;
+                this.playerTab[index].m_isDP = true;
             }.bind(this);
             let spr = BaseResLoad.getInstance().LoadByKey(sp_icon.uuid, "texture/texture", resCall, cc.SpriteAtlas);      //cc.bc.Helper.getSpriteFrame("atlas/pccaipiao", str)	//获取图片
             spr && resCall(null, spr);   //如果图片存在手动返回
@@ -299,7 +286,7 @@ cc.Class({
     //显示所有头像
     showAllPlayerIcon() {
         for (let index = 0; index < this.playerTab.length; index++) {
-            let nameStr = "player_" + this.playerTab[index].name;
+            let nameStr = "player_" + this.playerTab[index].m_DP;
 
             let resCall = function (err, spr) {
                 if (err) {
@@ -308,7 +295,7 @@ cc.Class({
                 }
                 let sp1 = sp_icon.getComponent(cc.Sprite);
                 sp1.spriteFrame = spr.getSpriteFrame(nameStr);
-                this.playerTab[index].isShowIcon = true;
+                this.playerTab[index].m_isDP = true;
             }.bind(this);
             let spr = BaseResLoad.getInstance().LoadByKey(sp_icon.uuid, "texture/texture", resCall, cc.SpriteAtlas);      //cc.bc.Helper.getSpriteFrame("atlas/pccaipiao", str)	//获取图片
             spr && resCall(null, spr);   //如果图片存在手动返回

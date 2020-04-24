@@ -3,15 +3,15 @@
  */
 var PlayerEnum = [];
 //阵营
-PlayerEnum["ZY_LANGREN"] = 1;   //阵营 狼人 
-PlayerEnum["ZY_HAOREN"] = 2;    //阵营 好人  
+PlayerEnum["ZY_HAOREN"] = 1;    //阵营 好人  
+PlayerEnum["ZY_LANGREN"] = 2;   //阵营 狼人 
 //职阶
-PlayerEnum["ZJ_LANGREN"] = 1;   //狼人 
-PlayerEnum["ZJ_CUNMIN"] = 2;    //村民
+PlayerEnum["ZJ_CUNMIN"] = 1;    //村民
+PlayerEnum["ZJ_LANGREN"] = 2;   //狼人 
 PlayerEnum["ZJ_SHEN"] = 3;      //神民
 //真职阶
-PlayerEnum["ZZJ_LANG"] = 10; //狼人
-PlayerEnum["ZZJ_CUNMIN"] = 11; //村民
+PlayerEnum["ZZJ_CUNMIN"] = 10; //村民
+PlayerEnum["ZZJ_LANG"] = 11; //狼人
 PlayerEnum["ZZJ_XZ"] = 12; //先知
 PlayerEnum["ZZJ_ZD"] = 13; //主动
 PlayerEnum["ZZJ_BD"] = 14; //被动

@@ -35,10 +35,10 @@ export default class GameLogic extends SingletonBase {
 
         for (let index = 0; index < zongNum; index++) {
             let tab = {};
-            tab.name = ZTtab[index];
-            tab.isDead = 0; //0没有死亡 1刀死 2出局
-            tab.isShowIcon = false;
-            tab.zyNum = 0;  //0不显示 1好人 2坏人
+            tab.m_DP = ZTtab[index];
+            tab.m_isDead = 0; //0没有死亡 1刀死 2出局
+            tab.m_isDP = false;
+            tab.m_ZY = 0;  //0不显示 1好人 2坏人
             playerTab.push(tab);
         }
 
