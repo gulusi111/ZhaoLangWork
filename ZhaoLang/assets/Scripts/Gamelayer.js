@@ -28,7 +28,7 @@ cc.Class({
         this.btn_tuichu = cc.find("btn_tuichu", this.bg_top);   //退出按钮
         this.btn_tuichu.on('touchend', function () {
             cc.log("btn_tuichu");
-            helper.getInstance().openTFChoice("是否退出游戏？",function () {
+            helper.getInstance().openTFChoice("是否退出游戏？", function () {
                 // cc.log("是否重置游戏");
                 this.node.removeFromParent();
             }.bind(this));
@@ -37,7 +37,7 @@ cc.Class({
         this.btn_chongzhi = cc.find("btn_chongzhi", this.bg_top);   //重置按钮
         this.btn_chongzhi.on('touchend', function () {
             cc.log("btn_chongzhi");
-            helper.getInstance().openTFChoice("是否重置游戏？",function () {
+            helper.getInstance().openTFChoice("是否重置游戏？", function () {
                 // cc.log("是否重置游戏");
                 this.init();
             }.bind(this));
@@ -56,7 +56,8 @@ cc.Class({
         this.btn_duihua.on('touchend', function () {
             cc.log("btn_duihua");
             helper.getInstance().openNumChoice("1111", function (index) {
-                this.showZZY(index- 1, 2)
+                // this.showZZY(index - 1, 2);
+                this.liaotian(index - 1);
             }.bind(this));
         }, this);
         this.label_duihua = cc.find("sp_num/LabelAtlas", this.btn_duihua).getComponent(cc.Label);
@@ -65,8 +66,10 @@ cc.Class({
         this.btn_churen.on('touchend', function () {
             cc.log("btn_churen");
             helper.getInstance().openNumChoice("222", function (index) {
-                this.playerTab[index - 1].m_isDead = 2;
-                this.characterUpdata();   //刷新头像框
+                if (this.playerTab[index - 1]) {
+                    this.playerTab[index - 1].m_isDead = 2;
+                    this.characterUpdata();   //刷新头像框
+                }
             }.bind(this));
         }, this);
 
@@ -91,8 +94,7 @@ cc.Class({
         this.liaotianItems = [];
         this.liaotianTogglePre();   //清理聊天内容
         this.label_duihua.string = 0;   //todo聊天数量
- 
-        GameLogic.getInstance().createGamePlayer(2,3,1,2,2,2);  //组建局
+        GameLogic.getInstance().createGamePlayer(2, 3, 0, 0, 0, 0);  //组建局
         this.setPlayerTab(GameLogic.getInstance().playerTab);   //设置当前座位号
         //-------------------------------------------
         this.chatacterItemTab = []; //玩家头像tab
@@ -132,6 +134,11 @@ cc.Class({
     showZZY(index, zhenyingNum) {
         this.playerTab[index].m_ZY = zhenyingNum;
         this.characterUpdata();   //刷新头像框
+    },
+
+    //聊天
+    liaotian(index){
+        this.playerTab[index].chitchat();
     },
 
     //刷新头像纪录
@@ -233,7 +240,6 @@ cc.Class({
                 case 2:
                     sp_daopai.active = true;
                     break;
-
                 default:
                     sp_daopai.active = true;
                     break;
@@ -245,7 +251,7 @@ cc.Class({
 
     //隐藏头像
     hidePlayerIcon(index) {
-        if (index != null) {
+        if (index != null && this.chatacterItemTab[index] != null) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
             // let nameStr = "player_" + this.playerTab[index].m_DP;
             let resCall = function (err, spr) {
@@ -265,7 +271,7 @@ cc.Class({
 
     //显示头像icon
     showPlayerIcon(index) {
-        if (index != null) {
+        if (index != null && this.chatacterItemTab[index] != null) {
             let sp_icon = cc.find("sp_icon", this.chatacterItemTab[index]);
             let nameStr = "player_" + this.playerTab[index].m_DP;
 

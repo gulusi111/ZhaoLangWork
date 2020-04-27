@@ -1,6 +1,9 @@
 import BaseResLoad from 'BaseResLoad'
 import PlayerEnum from "PlayerEnum";
 import SingletonBase from 'SingletonBase';
+import CunMinNode from 'CunMinNode';
+import LangRenPTNode from 'LangRenPTNode';
+
 
 /**
  * 项目的辅助脚本，理应只提供辅助类的函数
@@ -30,16 +33,23 @@ export default class GameLogic extends SingletonBase {
     createGamePlayer(cm, lr, ls, xz, zd, bd) {
         let playerTab = [];
         this.createZJ(cm, lr, ls, xz, zd, bd);
-        let ZTtab = this.randZTTab();   //打乱职业位置
-        let zongNum = lr + ls + xz + zd + bd + cm;
+        playerTab = this.randZTTab();   //打乱职业位置
+        // let ZTtab = this.randZTTab();   //打乱职业位置
+        // let zongNum = lr + ls + xz + zd + bd + cm;
 
-        for (let index = 0; index < zongNum; index++) {
-            let tab = {};
-            tab.m_DP = ZTtab[index];
-            tab.m_isDead = 0; //0没有死亡 1刀死 2出局
-            tab.m_isDP = false;
-            tab.m_ZY = 0;  //0不显示 1好人 2坏人
-            playerTab.push(tab);
+        // for (let index = 0; index < zongNum; index++) {
+        //     let tab = {};
+        //     tab.m_DP = ZTtab[index];
+        //     tab.m_isDead = 0; //0没有死亡 1刀死 2出局
+        //     tab.m_isDP = false;
+        //     tab.m_ZY = 0;  //0不显示 1好人 2坏人
+        //     playerTab.push(tab);
+        // }
+
+        for (const key in playerTab) {
+            if (playerTab[key]) {
+                playerTab[key].setNum(key);
+            }
         }
 
         this.playerTab = playerTab;
@@ -67,7 +77,12 @@ export default class GameLogic extends SingletonBase {
         let tab = [];
         //狼人
         for (let index = 0; index < lr; index++) {
-            tab.push(PlayerEnum["LS_PUTONG"]);
+            var object = new LangRenPTNode();
+            let t = {}
+            t.m_DP = PlayerEnum["LS_PUTONG"]
+            object.init(t);
+
+            tab.push(object);
         }
 
         this.createLS(ls, tab);  //创建狼神
@@ -77,7 +92,11 @@ export default class GameLogic extends SingletonBase {
 
         //村民
         for (let index = 0; index < cm; index++) {
-            tab.push(PlayerEnum["CMM_PT"]);
+            var object = new CunMinNode();
+            let t = {}
+            t.m_DP = PlayerEnum["CMM_PT"]
+            object.init(t);
+            tab.push(object);
         }
 
         this.nowZJtab = tab;

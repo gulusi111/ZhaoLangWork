@@ -39,10 +39,11 @@ cc.Class({
         this.m_ZJ = 0;      //职介，狼人，村民，神民
         this.m_ZZJ = 0;     //真职介，狼人，村民，先知，主动，被动
         this.m_JZJ = 0;     //真职介，狼人，村民，先知，主动，被动
-        this.m_Num = tab.m_Num;     //当前号码牌
-        this.m_DP = tab.m_DP;      //底牌
+        this.m_Num = tab.m_Num;     //当前编号
+        this.m_showNum = parseInt(this.m_Num) + 1;  //当前号码牌
+        this.m_DP = this.m_DP || tab.m_DP;      //底牌
         this.m_isDP = false;    //是否翻底牌
-        this.m_isDead = false;  //是否死亡
+        this.m_isDead = 0;  //是否死亡 0没有 1死亡 2其他方式死亡
         this.m_isChuJu = false; //是否抗推出局
         this.m_isFanHH = false; //是否翻好坏牌
 
@@ -64,17 +65,21 @@ cc.Class({
 
     //设置号码牌
     setNum(num) {
-        cc.log("setNum");
+        cc.log("setNum = " + num);
+        this.m_Num = num;
+        this.m_showNum = parseInt(this.m_Num) + 1;
     },
 
     //设置底牌信息
     setDP(num) {
-        cc.log("setDP");
+        cc.log("setDP = " + num);
+        this.m_DP = num;
     },
 
     //设置阵营
     setZY(num) {
-        cc.log("setZY");
+        cc.log("setZY = " + num);
+        this.m_ZY = num;
     },
 
     //中刀

@@ -3,8 +3,8 @@
  */
 var PlayerEnum = [];
 //阵营
-PlayerEnum["ZY_HAOREN"] = 1;    //阵营 好人  
-PlayerEnum["ZY_LANGREN"] = 2;   //阵营 狼人 
+PlayerEnum["ZY_HAOREN"] = 0;    //阵营 好人  
+PlayerEnum["ZY_LANGREN"] = 1;   //阵营 狼人 
 //职阶
 PlayerEnum["ZJ_CUNMIN"] = 1;    //村民
 PlayerEnum["ZJ_LANGREN"] = 2;   //狼人 
