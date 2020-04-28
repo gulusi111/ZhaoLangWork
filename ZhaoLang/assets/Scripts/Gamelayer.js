@@ -94,7 +94,7 @@ cc.Class({
         this.liaotianItems = [];
         this.liaotianTogglePre();   //清理聊天内容
         this.label_duihua.string = 0;   //todo聊天数量
-        GameLogic.getInstance().createGamePlayer(2, 3, 0, 0, 0, 0);  //组建局
+        GameLogic.getInstance().createGamePlayer(2, 3, 3, 0, 0, 0);  //组建局
         this.setPlayerTab(GameLogic.getInstance().playerTab);   //设置当前座位号
         //-------------------------------------------
         this.chatacterItemTab = []; //玩家头像tab

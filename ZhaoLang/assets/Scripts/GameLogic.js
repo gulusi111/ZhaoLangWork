@@ -2,7 +2,7 @@ import BaseResLoad from 'BaseResLoad'
 import PlayerEnum from "PlayerEnum";
 import SingletonBase from 'SingletonBase';
 import CunMinNode from 'CunMinNode';
-import LangRenPTNode from 'LangRenPTNode';
+import LangRenNode from 'LangRenNode';
 
 
 /**
@@ -77,7 +77,7 @@ export default class GameLogic extends SingletonBase {
         let tab = [];
         //狼人
         for (let index = 0; index < lr; index++) {
-            var object = new LangRenPTNode();
+            var object = new LangRenNode();
             let t = {}
             t.m_DP = PlayerEnum["LS_PUTONG"]
             object.init(t);
@@ -111,7 +111,12 @@ export default class GameLogic extends SingletonBase {
         let tab2 = [PlayerEnum["LS_LANGWANG"], PlayerEnum["LS_LANGMEI"], PlayerEnum["LS_KUANGLANG"], PlayerEnum["LS_DULANG"]];
         for (let index = num; index > 0; index--) {
             let choiceNum = Math.floor(Math.random() * tab2.length);
-            tab.push(tab2[choiceNum]);
+            var object = new LangRenNode();
+            let t = {}
+            t.m_DP = tab2[choiceNum];
+            object.init(t);
+
+            tab.push(object);
             tab2.splice(choiceNum, 1);
         }
     }

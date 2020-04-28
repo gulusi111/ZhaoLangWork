@@ -1,7 +1,7 @@
 import PlayerEnum from "PlayerEnum";
 
 /**
- * 普通狼人
+ * 忍者
  */
 
 cc.Class({
@@ -9,10 +9,10 @@ cc.Class({
 
     //数据初始化
     init(tab) {
-        this.m_ZY = PlayerEnum["ZY_LANREN"];      //阵营 0好人，1狼人
-        this.m_ZJ = PlayerEnum["ZJ_ZJ_LANGREN"];      //职介，狼人，村民，神民
-        this.m_ZZJ = PlayerEnum["ZZJ_LANG"];     //真职介，狼人，村民，先知，主动，被动
-        this.m_JZJ = tab.m_JZJ || PlayerEnum["JZJ_CUNMIN"];     //假职介（狼人才需要用），村民，先知，主动，被动
+        this.m_ZY = PlayerEnum["ZY_HAOREN"];      //阵营 0好人，1狼人
+        this.m_ZJ = PlayerEnum["ZJ_SHEN"];      //职介，狼人，村民，神民
+        this.m_ZZJ = PlayerEnum["ZZJ_BD"];     //真职介，狼人，村民，先知，主动，被动
+        this.m_JZJ = null;     //真职介，狼人，村民，先知，主动，被动
         this.m_Num = tab.m_Num;     //当前编号
         this.m_showNum = parseInt(this.m_Num) + 1;  //当前号码牌
         this.m_DP = this.m_DP || tab.m_DP;      //底牌
@@ -31,13 +31,11 @@ cc.Class({
 
         this.isGetSkill = 0;   //是否得到技能
         this.isDuSi = 0;      //毒死
-
     },
 
     //聊天
     chitchat() {
-        cc.log("我是狼人" + this.m_showNum + "号");
+        cc.log("我是忍者" + this.m_showNum + "号");
     },
-
 
 });
