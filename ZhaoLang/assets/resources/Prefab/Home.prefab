@@ -616,7 +616,7 @@
       "__uuid__": "4af815b6-5add-4ac1-9043-8049b15b4f40"
     },
     "_type": 1,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -666,7 +666,7 @@
     "asset": {
       "__uuid__": "199a9ee0-b8e7-42da-a1b2-a30be8d1b736"
     },
-    "fileId": "64tuT2cz5JpbKz1ZoZ8xpo",
+    "fileId": "266xdbrGxEc4hU2EQRGI2p",
     "sync": false
   },
   {
